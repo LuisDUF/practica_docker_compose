@@ -1,0 +1,109 @@
+<!DOCTYPE বিদ্যা>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Laboratorio | Panel de Gestión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="logo-icon">🔬</div>
+                <div class="titles">
+                    <h1>Inventario de Laboratorio</h1>
+                    <p>Gestión de Equipos</p>
+                </div>
+            </div>
+            <div class="stats-card">
+                <div class="stat-icon">👁️</div>
+                <div class="stat-info">
+                    <span class="stat-label">Visitas a la lista</span>
+                    <span class="stat-value" id="visitas-contador">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="app-content">
+            <aside class="sidebar">
+                <div class="card form-card">
+                    <h2 id="form-title">Registrar Nuevo Equipo</h2>
+                    <form id="equipo-form">
+                        <input type="hidden" id="equipo-id">
+                        
+                        <div class="form-group">
+                            <label for="nombre">Nombre del Equipo</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ej. Microscopio..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estado">Estado Actual</label>
+                            <div class="custom-select">
+                                <select id="estado" name="estado">
+                                    <option value="Disponible">Disponible</option>
+                                    <option value="En Uso">En Uso</option>
+                                    <option value="Mantenimiento">Mantenimiento</option>
+                                    <option value="Baja">Baja (Obsoleto/Dañado)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion">Descripción / Notas</label>
+                            <textarea id="descripcion" name="descripcion" rows="4" placeholder="Detalles técnicos, marca, observaciones..."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="btn-save">Guardar Equipo</button>
+                            <button type="button" class="btn btn-outline" id="btn-cancel" style="display: none;">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="card status-card mt-4">
+                    <h3>Estado del Sistema</h3>
+                    <div id="health-status" class="health-container">Verificando conexión...</div>
+                </div>
+            </aside>
+
+            <section class="main-panel">
+                <div class="toolbar">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Buscar equipo por nombre o descripción...">
+                        <button class="btn btn-icon" id="btn-search">
+                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </button>
+                    </div>
+                    <div class="cache-badge" id="cache-indicator" style="display:none;">
+                        ⚡ Datos en caché
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Estado</th>
+                                <th>Fecha Registro</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="equipos-tbody">
+                            <!-- Los datos se inyectarán aquí dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
